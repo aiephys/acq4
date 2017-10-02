@@ -12,7 +12,9 @@ if __package__ is None:
     __package__ = 'acq4'
 from . import pyqtgraph as pg
 from .pyqtgraph.Qt import QtGui, QtCore
-from .Manager import Manager
+from .Manager import *
+from .util.debug import installExceptionHandler
+from numpy import *
 
 # Pull some args out
 if "--profile" in sys.argv:
@@ -36,6 +38,9 @@ enableFaulthandler()
 if sys.platform == 'win32':
     import ctypes
     ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID('ACQ4')
+
+# Enable exception handling
+installExceptionHandler()
 
 ## Initialize Qt
 app = pg.mkQApp()
